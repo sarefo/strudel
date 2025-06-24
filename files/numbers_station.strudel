@@ -2,6 +2,8 @@
 
 stack(
 
+  // RHYTHM //
+  
   sound("bd!6,hh!4")
   .bank("RolandTR909")
   .gain(.4)
@@ -12,18 +14,21 @@ stack(
   
   sound("bd hh sd [oh oh oh]")
   .bank("RolandTR909")
-  .gain(".8 .6 .8 .1")
+  //.gain(".8 .6 .8 .1")
+  .gain(".4 .2 .4 .1")
   .room(".1 .2 .3 .8")
   ._punchcard()  ,
   
   n("<3 3 3 [3 - 3 - - - - - - - - 3 3]>")
   .sound("east")
-  .gain(rand.range(1.4,1.8))
+  .gain(rand.range(1.0,1.4))
   .freq(rand.range(48,52))
   .room(rand.range(.2,.4))
   //.rev()
   //._scope()
   ,
+
+  // VOICE //
   
   n("- 3 4 [- 1 8], <7 [4 8 3 1 -] 2 2 [5 7 3]>")
   .sound("numbers")
@@ -36,25 +41,32 @@ stack(
   //.rev()
   //._punchcard()
   ,
-  
+
+  // CASIO //
   
   n("1 [7 9] 9 3 <3 3 3 <4 5 4 [5 5 5]> > 3")
   .sound("casio")
-  .freq(rand.range(9.8,10.2))
-  .gain(rand.range(.08,.1))
-  .distort(1)
   .room("<.8 1 1.2 1.4>")
   .lpf("<800 1200 1600 2000>")
+  //.clip("<.5 .5 .5 4>")
+  .freq(rand.range(9.8,10.2))
+  .distort(1)
+  .gain(rand.range(.08,.1))
+  //.gain("<.08 .08 .08 .15>")
   .pan("<0 .25 .5 .75 1 .75 .5 .25>")
   //.rev()
   //._punchcard()
   ,
 
+  // WAVES //
+  
   note("c2!2")
+  //note("<c2!2 c2!2 c2!2 [- c2 c2]!2>")
   .sound("<square sawtooth>")
   .gain(slider(0.6681,.1,2))
   //.lpf(rand.range(1000,4000))
-  .room(2)
+  //.room(2)
+  .room("<.6! .8! 1! 2!>")
   //.distort(slider(0.834, 0,2))
   .pan(rand.range(0,1))
   //._spectrum()
@@ -69,14 +81,17 @@ stack(
   //._scope()
   ,
 
-  /*s("crackle")
+  // NOISE //
+  
+  s("crackle")
   .density(".2")
   .pan(rand.range(0,1))
   .distort(1)
-  .gain(.8)
+  .gain(.6)
   .room(1.4)
+  //.lpf(4000)
   //._spectrum(),
-*/
+
   
   /*
   n(run(8))
