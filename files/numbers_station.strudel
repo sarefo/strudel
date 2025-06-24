@@ -1,0 +1,90 @@
+// @title Numbers Station 2025-06-23 @by sarefo
+
+stack(
+
+  sound("bd!6,hh!4")
+  .bank("RolandTR909")
+  .gain(.4)
+  .room(.2)
+  .lpf("<600 1200 1800 2400>")
+  //.distort(2)
+  ._punchcard()  ,
+  
+  sound("bd hh sd [oh oh oh]")
+  .bank("RolandTR909")
+  .gain(".8 .6 .8 .1")
+  .room(".1 .2 .3 .8")
+  ._punchcard()  ,
+  
+  n("<3 3 3 [3 - 3 - - - - - - - - 3 3]>")
+  .sound("east")
+  .gain(rand.range(1.4,1.8))
+  .freq(rand.range(48,52))
+  .room(rand.range(.2,.4))
+  //.rev()
+  //._scope()
+  ,
+  
+  n("- 3 4 [- 1 8], <7 [4 8 3 1 -] 2 2 [5 7 3]>")
+  .sound("numbers")
+  .freq(rand.range(52,88))
+  .gain(rand.range(.8,1.8))
+  .lpf("<800 1200 2000 3000>")
+  .room(rand.range(.2,1.2))
+  //.rev()
+  //._punchcard()
+  ,
+  
+  
+  n("1 [7 9] 9 3 3 3")
+  .sound("casio")
+  .freq(rand.range(9.8,10.2))
+  .gain(rand.range(.08,.1))
+  .distort(1)
+  .room("<.8 1 1.2 1.4>")
+  .lpf("<600 1000 1400 1800 2200 2600>")
+  .pan("<0 .25 .5 .75 1 .75 .5 .25>")
+  //.rev()
+  //._punchcard()
+  ,
+
+  note("c2!2")
+  .sound("<square sawtooth>")
+  .gain(slider(0.6681,.1,2))
+  //.lpf(rand.range(1000,4000))
+  .room(2)
+  //.distort(slider(0.834, 0,2))
+  .pan(rand.range(0,1))
+  //._spectrum()
+  ,
+
+  note("c3!4")
+  .sound("sine")
+  .gain(rand.range(.8,1.0))
+  //.gain(2)
+  .freq(rand.range(200,300))
+  .pan(rand.range(.4,.6))
+  //._scope()
+  ,
+
+  /*s("crackle")
+  .density(".2")
+  .pan(rand.range(0,1))
+  .distort(1)
+  .gain(.8)
+  .room(1.4)
+  //._spectrum(),
+*/
+  
+  /*
+  n(run(8))
+  .scale("<C:minor G:minor F:minor A:minor>")
+  .s("sawtooth")
+  //.release("<0.5 0.2 2.4>")
+  .phaser(2)
+  .phasersweep("<800 2000 4000>")
+  .gain(0.4)
+  .jux(rev)
+  */
+  
+  )
