@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /mnt/c/Users/stefa/OneDrive/Documents/GitHub/sarefo.github.io log --oneline -10)"
+    ],
+    "deny": []
+  }
+}
