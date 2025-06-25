@@ -23,34 +23,54 @@
             border-bottom: 2px solid #4CAF50;
             padding-bottom: 10px;
         }
-        .file-list {
-            list-style: none;
-            padding: 0;
+        .file-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
-        .file-item {
-            background: #f9f9f9;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 5px;
-            border-left: 4px solid #4CAF50;
+        .file-table th,
+        .file-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .file-table th {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+        }
+        .file-table th:hover {
+            background-color: #45a049;
+        }
+        .file-table th.sortable::after {
+            content: ' ↕';
+            opacity: 0.5;
+        }
+        .file-table th.sort-asc::after {
+            content: ' ↑';
+            opacity: 1;
+        }
+        .file-table th.sort-desc::after {
+            content: ' ↓';
+            opacity: 1;
+        }
+        .file-table tr:hover {
+            background-color: #f5f5f5;
         }
         .file-link {
             color: #2196F3;
             text-decoration: none;
             font-weight: bold;
-            font-size: 18px;
         }
         .file-link:hover {
             text-decoration: underline;
         }
-        .file-description {
-            color: #666;
-            margin-top: 5px;
-            font-size: 14px;
-        }
         .loading {
             color: #666;
             font-style: italic;
+            text-align: center;
+            padding: 20px;
         }
     </style>
 </head>
@@ -59,49 +79,114 @@
         <h1>🎵 Strudel Files Repository</h1>
         <p>Click on any file to open it directly in strudel.cc</p>
         
-        <ul class="file-list" id="fileList">
-            <li class="loading">Loading files...</li>
-        </ul>
+        <table class="file-table" id="fileTable">
+            <thead>
+                <tr>
+                    <th class="sortable" data-column="title">Title</th>
+                    <th class="sortable" data-column="author">Author</th>
+                    <th class="sortable" data-column="modified">Modified</th>
+                </tr>
+            </thead>
+            <tbody id="fileTableBody">
+                <tr>
+                    <td colspan="3" class="loading">Loading files...</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <script>
+        let filesData = [];
+        let currentSort = { column: 'modified', direction: 'desc' };
+
         async function loadFiles() {
-            const fileList = document.getElementById('fileList');
+            const tableBody = document.getElementById('fileTableBody');
             
             try {
-                // List of files to load
-                const files = [
-                    { name: 'numbers_station.strudel', description: 'Numbers Station 2025-06-23 by sarefo' }
-                ];
+                // Load file list from JSON
+                const response = await fetch('data/files.json');
+                filesData = await response.json();
                 
-                fileList.innerHTML = '';
+                renderTable();
                 
-                for (const file of files) {
-                    const response = await fetch(`files/${file.name}`);
+            } catch (error) {
+                tableBody.innerHTML = '<tr><td colspan="3" style="color: red; text-align: center;">Error loading files</td></tr>';
+                console.error('Error loading files:', error);
+            }
+        }
+
+        async function renderTable() {
+            const tableBody = document.getElementById('fileTableBody');
+            tableBody.innerHTML = '';
+
+            for (const file of filesData) {
+                try {
+                    // Load file content for encoding
+                    const response = await fetch(`files/${file.path}`);
                     const content = await response.text();
                     
                     // Base64 encode the content
                     const encoded = btoa(content);
                     const strudelUrl = `https://strudel.cc/#${encoded}`;
                     
-                    const li = document.createElement('li');
-                    li.className = 'file-item';
-                    li.innerHTML = `
-                        <a href="${strudelUrl}" target="_blank" class="file-link">${file.name}</a>
-                        <div class="file-description">${file.description}</div>
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><a href="${strudelUrl}" target="_blank" class="file-link">${file.title}</a></td>
+                        <td>${file.author}</td>
+                        <td>${file.modified}</td>
                     `;
                     
-                    fileList.appendChild(li);
+                    tableBody.appendChild(row);
+                } catch (error) {
+                    console.error(`Error loading file ${file.filename}:`, error);
                 }
-                
-            } catch (error) {
-                fileList.innerHTML = '<li class="file-item" style="color: red;">Error loading files</li>';
-                console.error('Error loading files:', error);
             }
         }
-        
-        // Load files when page loads
-        document.addEventListener('DOMContentLoaded', loadFiles);
+
+        function sortTable(column) {
+            if (currentSort.column === column) {
+                currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSort.column = column;
+                currentSort.direction = 'asc';
+            }
+
+            filesData.sort((a, b) => {
+                let aVal = a[column];
+                let bVal = b[column];
+                
+                // Handle date sorting
+                if (column === 'modified') {
+                    aVal = new Date(aVal);
+                    bVal = new Date(bVal);
+                }
+                
+                if (aVal < bVal) return currentSort.direction === 'asc' ? -1 : 1;
+                if (aVal > bVal) return currentSort.direction === 'asc' ? 1 : -1;
+                return 0;
+            });
+
+            // Update header classes
+            document.querySelectorAll('th.sortable').forEach(th => {
+                th.classList.remove('sort-asc', 'sort-desc');
+            });
+            
+            const currentHeader = document.querySelector(`th[data-column="${column}"]`);
+            currentHeader.classList.add(currentSort.direction === 'asc' ? 'sort-asc' : 'sort-desc');
+
+            renderTable();
+        }
+
+        // Add click handlers to sortable headers
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('th.sortable').forEach(th => {
+                th.addEventListener('click', () => {
+                    sortTable(th.dataset.column);
+                });
+            });
+            
+            loadFiles();
+        });
     </script>
 </body>
 </html>
