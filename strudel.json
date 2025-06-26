@@ -1,14 +1,48 @@
 {
-  "botanik":["botanik/00_bot.wav","botanik/01_bot2.wav"],
-  "brazil":["brazil/00_central.wav","brazil/01_gone.wav","brazil/02_phone.wav"],
-  "darkstar":["darkstar/00_schlafen.wav"],
-  "googoosh":["googoosh/00_gitarrenloop_regel_2.wav"],
-  "mutante":["mutante/00_chepa.wav"],
-  "reefer":["reefer/00_faster.wav"],
-  "sklavenmacht":["sklavenmacht/00_die.blindheit.ist.vorbei.wav","sklavenmacht/01_sklavenmacht1.wav","sklavenmacht/02_sklavenmacht2.wav","sklavenmacht/03_sklavenmacht3.wav","sklavenmacht/04_sklavenmacht4.wav","sklavenmacht/05_sklavenmacht5.wav"],
-  "sstroopers":["sstroopers/00_li4ever.wav"],
-  "swing":["swing/00_di.wav","swing/01_do.wav","swing/02_dubadubababada.wav"],
-  "zaz":["zaz/konzent.wav","zaz/modk1.wav","zaz/notdetroit.wav"],
-  "zombi":["zombi/hunchak.wav"],
+  "botanik": [
+    "botanik/00_bot.wav",
+    "botanik/01_bot2.wav"
+  ],
+  "brazil": [
+    "brazil/00_central.wav",
+    "brazil/01_gone.wav",
+    "brazil/02_phone.wav"
+  ],
+  "darkstar": [
+    "darkstar/00_schlafen.wav"
+  ],
+  "googoosh": [
+    "googoosh/00_gitarrenloop_regel_2.wav"
+  ],
+  "mutante": [
+    "mutante/00_chepa.wav"
+  ],
+  "reefer": [
+    "reefer/00_faster.wav"
+  ],
+  "sklavenmacht": [
+    "sklavenmacht/00_die.blindheit.ist.vorbei.wav",
+    "sklavenmacht/01_sklavenmacht1.wav",
+    "sklavenmacht/02_sklavenmacht2.wav",
+    "sklavenmacht/03_sklavenmacht3.wav",
+    "sklavenmacht/04_sklavenmacht4.wav",
+    "sklavenmacht/05_sklavenmacht5.wav"
+  ],
+  "sstroopers": [
+    "sstroopers/00_li4ever.wav"
+  ],
+  "swing": [
+    "swing/00_di.wav",
+    "swing/01_do.wav",
+    "swing/02_dubadubababada.wav"
+  ],
+  "zaz": [
+    "zaz/konzent.wav",
+    "zaz/modk1.wav",
+    "zaz/notdetroit.wav"
+  ],
+  "zombi": [
+    "zombi/hunchak.wav"
+  ],
   "_base": "https://raw.githubusercontent.com/sarefo/strudel/main/samples/"
 }

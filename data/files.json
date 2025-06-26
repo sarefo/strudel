@@ -1,17 +1,31 @@
 [
   {
-    "filename": "80s_synth_test.strudel",
-    "title": "80s Synth Test",
-    "author": "seed from strudel docs",
-    "modified": "2025-06-25",
-    "path": "80s_synth_test.strudel"
+    "filename": "hello_world.strudel",
+    "title": "Hello World!",
+    "author": "sarefo",
+    "modified": "2025-06-26",
+    "path": "hello_world.strudel"
   },
   {
     "filename": "korobeiniki_test_1.strudel",
     "title": "Korobeiniki Test 2025-06-25",
     "author": "Unknown",
-    "modified": "2025-06-25",
+    "modified": "2025-06-26",
     "path": "korobeiniki_test_1.strudel"
+  },
+  {
+    "filename": "sandbox.strudel",
+    "title": "Sandbox",
+    "author": "sarefo",
+    "modified": "2025-06-26",
+    "path": "sandbox.strudel"
+  },
+  {
+    "filename": "80s_synth_test.strudel",
+    "title": "80s Synth Test",
+    "author": "seed from strudel docs",
+    "modified": "2025-06-25",
+    "path": "80s_synth_test.strudel"
   },
   {
     "filename": "numbers_station.strudel",

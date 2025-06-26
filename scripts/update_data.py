@@ -121,11 +121,49 @@ def generate_docs_list():
     
     return docs_list
 
+def generate_strudel_sample_config():
+    """Scan the samples directory and generate strudel.json configuration."""
+    # Get the script directory and build absolute path to samples directory
+    script_dir = Path(__file__).parent.absolute()
+    samples_dir = script_dir.parent / 'samples'
+    
+    # Ensure the directory exists
+    if not samples_dir.exists():
+        print(f"Directory {samples_dir} does not exist")
+        return {}
+    
+    # Build the sample configuration
+    config = {}
+    
+    # Scan each subdirectory in samples/
+    for category_dir in samples_dir.iterdir():
+        if category_dir.is_dir():
+            category_name = category_dir.name
+            category_files = []
+            
+            # Get all .wav files in this category
+            for wav_file in category_dir.glob("*.wav"):
+                # Store as category/filename.wav format
+                relative_path = f"{category_name}/{wav_file.name}"
+                category_files.append(relative_path)
+            
+            # Sort files for consistent output
+            category_files.sort()
+            
+            if category_files:  # Only add categories that have files
+                config[category_name] = category_files
+    
+    # Add the base URL for GitHub raw content
+    config["_base"] = "https://raw.githubusercontent.com/sarefo/strudel/main/samples/"
+    
+    return config
+
 def main():
-    """Generate both strudel files and docs lists."""
+    """Generate strudel files, docs lists, and sample configuration."""
     # Get the script directory and build absolute paths for output
     script_dir = Path(__file__).parent.absolute()
     data_dir = script_dir.parent / 'data'
+    repo_root = script_dir.parent
     
     # Generate strudel files list
     strudel_files = generate_strudel_file_list()
@@ -149,6 +187,17 @@ def main():
         json.dump(docs_files, json_file, indent=2, ensure_ascii=False)
     
     print(f"Generated {docs_json_path} with {len(docs_files)} documentation files")
+    
+    # Generate strudel sample configuration
+    sample_config = generate_strudel_sample_config()
+    
+    # Write strudel.json
+    strudel_config_path = repo_root / 'strudel.json'
+    
+    with open(strudel_config_path, 'w', encoding='utf-8') as json_file:
+        json.dump(sample_config, json_file, indent=2, ensure_ascii=False)
+    
+    print(f"Generated {strudel_config_path} with {len(sample_config) - 1} sample categories")
 
 if __name__ == "__main__":
     main()
