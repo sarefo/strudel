@@ -1,6 +1,7 @@
 // @title Korobeiniki Test 2025-06-25
 
-setcpm(90/2)
+//setcpm(slider(20,20,100))
+setcpm(45)
 
 $: note(`[[e5 [b4 c5] d5 [c5 b4]]
 [a4 [a4 c5] e5 [d5 c5]]
@@ -19,18 +20,31 @@ $: note(`[[e5 [b4 c5] d5 [c5 b4]]
 [[b1 b2]*2 [e2 e3]*2]
 [[a1 a2]*4]`)
   .slow(8)
-  .sound("gm_synth_strings_1")
+  .sound("sawtooth")
+  //.lpf("<800 1000 1200 1400 1600 1800 2000 2200>/2")
+  //.distort("<0 .1 .2 .3 .4 .5 .6 .7 .8 1 1.2 1.4 1.6 1.8 2 2.2>")
+  //.sound("gm_synth_strings_1")
   //.freq(rand.range(200,400))
-  //.room(0.1)
+  .room("<3 2 1 0>/4")
 // [a2 a3 a2 a3 a2 a3 b1 c2]
 
 //$: note(`
 // [[2 []]]
 //`)
 
-$: sound("bd hh hh oh")
-  .freq(rand.range(200,300)).ribbon("<2 4 8>",4)
+_$: n("<1 2 3 4>*1")
+  .sound("numbers")
+  .distort(rand.range(0.8, 2.5))
+  .gain(.4)
+  .freq(rand.range(66,80))
+  .room(rand.range(0.8,2))
+  //.freq(rand.range(200,300)).ribbon("<2 4 8>",4)
 
-$: n()
+$: sound("< <<bd hh> hh hh hh>*4 <bd <hh [- hh]> hh hh>*4 <bd hh <hh -> hh>*4 [bd bd bd [<bd hh> bd]] >").bank("rolandtr808")
+   .gain(2)
+   //.vowel("<a e>")
+   .distort(4)
+   .room(2)
+//$: n()
 //0 1 2 3 4 5 6 7
 //c d e f g a b
