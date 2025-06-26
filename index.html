@@ -125,8 +125,8 @@
                     const response = await fetch(`files/${file.path}`);
                     const content = await response.text();
                     
-                    // Base64 encode the content
-                    const encoded = btoa(content);
+                    // Base64 encode the content (handle Unicode properly)
+                    const encoded = btoa(unescape(encodeURIComponent(content)));
                     const strudelUrl = `https://strudel.cc/#${encoded}`;
                     
                     const row = document.createElement('tr');
