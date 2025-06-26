@@ -21,8 +21,11 @@ $: note(`[[e5 [b4 c5] d5 [c5 b4]]
 [[a1 a2]*4]`)
   .slow(8)
   .sound("sawtooth")
-  //.lpf("<800 1000 1200 1400 1600 1800 2000 2200>/2")
-  //.distort("<0 .1 .2 .3 .4 .5 .6 .7 .8 1 1.2 1.4 1.6 1.8 2 2.2>")
+  //.attack(0)
+  //.sustain(.5)
+  //.release("<1 .9 .8 .7 .6 .5 .4 .3>/2")
+  .lpf("<800 1000 1200 1400 1600 1800 2000 2200>/2")
+  .distort("<0 .1 .2 .3 .4 .5 .6 .7 .8 1 1.2 1.4 1.6 1.8 2 2.2>")
   //.sound("gm_synth_strings_1")
   //.freq(rand.range(200,400))
   .room("<3 2 1 0>/4")
@@ -32,19 +35,35 @@ $: note(`[[e5 [b4 c5] d5 [c5 b4]]
 // [[2 []]]
 //`)
 
-_$: n("<1 2 3 4>*1")
-  .sound("numbers")
-  .distort(rand.range(0.8, 2.5))
+samples('shabda/speech/ru-RU/m:ноль,два,три,четыре')
+
+$: // 1-4 in Russian
+  s("[ три два один ноль ]/4")
+  .distort(rand.range(1.5, 3.0))
   .gain(.4)
   .freq(rand.range(66,80))
+  .sometimesBy(.2, x =>x.freq(100))
+  .room(rand.range(0.8,2))
+  //.rev()
+
+_$: n("[1 2 3 4]/4")
+  .sound("numbers")
+  //.off(-2/16, x => x.add(1))
+  .distort(rand.range(1.5, 3.0))
+  .gain(.4)
+  .freq(rand.range(66,80))
+  .sometimesBy(.2, x =>x.freq(100))
   .room(rand.range(0.8,2))
   //.freq(rand.range(200,300)).ribbon("<2 4 8>",4)
 
-$: sound("< <<bd hh> hh hh hh>*4 <bd <hh [- hh]> hh hh>*4 <bd hh <hh -> hh>*4 [bd bd bd [<bd hh> bd]] >").bank("rolandtr808")
+_$: sound("< <<bd hh> hh hh hh>*4 <bd <hh hh*2> hh hh>*4 <bd hh <hh -> hh>*4 [bd bd bd [<bd hh> bd]] >").bank("rolandtr808")
    .gain(2)
    //.vowel("<a e>")
    .distort(4)
    .room(2)
+   //.delay(.5)
+
+
 //$: n()
 //0 1 2 3 4 5 6 7
 //c d e f g a b

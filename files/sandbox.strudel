@@ -1,0 +1,18 @@
+// @title Sandbox @by sarefo
+
+samples('github:sarefo/strudel')
+samples('shabda/speech/ru-RU/m:один,два,три,четыре')
+//samples('http://localhost:5432');
+        
+//s("sklavenmacht:0")
+_$:
+  n("[0 1 2 3]/4").sound("sklavenmacht")
+
+$: // 1-4 in Russian
+  s("один два три четыре")
+  .distort("3")
+
+_$: // googoosh loop 
+n("0/2")
+  .sound("googoosh")
+  .note("a2")
