@@ -3,6 +3,7 @@ import os
 import re
 import json
 import datetime
+from pathlib import Path
 
 def extract_title_and_author(strudel_file_path):
     """Extract the title and author from a strudel file."""
@@ -37,20 +38,22 @@ def extract_markdown_title(md_file_path):
 
 def generate_strudel_file_list():
     """Scan the files directory and generate a JSON file list for strudel files."""
-    files_dir = '../files'
+    # Get the script directory and build absolute path to files directory
+    script_dir = Path(__file__).parent.absolute()
+    files_dir = script_dir.parent / 'files'
     
     # Ensure the directory exists
-    if not os.path.exists(files_dir):
+    if not files_dir.exists():
         print(f"Directory {files_dir} does not exist")
         return []
     
     # Get all .strudel files
     file_list = []
-    for root, dirs, files in os.walk(files_dir):
+    for root, dirs, files in os.walk(str(files_dir)):
         for file in files:
             if file.endswith('.strudel'):
                 # Get the relative path from the files directory
-                rel_path = os.path.relpath(os.path.join(root, file), files_dir)
+                rel_path = os.path.relpath(os.path.join(root, file), str(files_dir))
                 full_path = os.path.join(root, file)
                 
                 # Extract title and author
@@ -78,20 +81,22 @@ def generate_strudel_file_list():
 
 def generate_docs_list():
     """Scan the docs directory and generate a JSON file list for markdown files."""
-    docs_dir = '../docs'
+    # Get the script directory and build absolute path to docs directory
+    script_dir = Path(__file__).parent.absolute()
+    docs_dir = script_dir.parent / 'docs'
     
     # Ensure the directory exists
-    if not os.path.exists(docs_dir):
+    if not docs_dir.exists():
         print(f"Directory {docs_dir} does not exist")
         return []
     
     # Get all .md files
     docs_list = []
-    for root, dirs, files in os.walk(docs_dir):
+    for root, dirs, files in os.walk(str(docs_dir)):
         for file in files:
             if file.endswith('.md'):
                 # Get the relative path from the docs directory
-                rel_path = os.path.relpath(os.path.join(root, file), docs_dir)
+                rel_path = os.path.relpath(os.path.join(root, file), str(docs_dir))
                 full_path = os.path.join(root, file)
                 
                 # Extract title from markdown
@@ -118,12 +123,16 @@ def generate_docs_list():
 
 def main():
     """Generate both strudel files and docs lists."""
+    # Get the script directory and build absolute paths for output
+    script_dir = Path(__file__).parent.absolute()
+    data_dir = script_dir.parent / 'data'
+    
     # Generate strudel files list
     strudel_files = generate_strudel_file_list()
     
     # Write strudel files JSON
-    strudel_json_path = '../data/files.json'
-    os.makedirs(os.path.dirname(strudel_json_path), exist_ok=True)
+    strudel_json_path = data_dir / 'files.json'
+    data_dir.mkdir(exist_ok=True)
     
     with open(strudel_json_path, 'w', encoding='utf-8') as json_file:
         json.dump(strudel_files, json_file, indent=2, ensure_ascii=False)
@@ -134,7 +143,7 @@ def main():
     docs_files = generate_docs_list()
     
     # Write docs JSON
-    docs_json_path = '../data/docs.json'
+    docs_json_path = data_dir / 'docs.json'
     
     with open(docs_json_path, 'w', encoding='utf-8') as json_file:
         json.dump(docs_files, json_file, indent=2, ensure_ascii=False)
