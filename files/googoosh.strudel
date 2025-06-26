@@ -9,7 +9,9 @@ n("0")
   .note("c2") // tune sample
   //.cut(1)
   .loopAt(4)
+  .gain(.4)
+//.hush()
 
-_$:
-  s("[hh*4 hh*4 hh*4 oh]/4")
-  .gain(0.4)
+$:
+  s("[bongo*4 bongo*4 bongo*4 [- - - oh*2]]/4")
+  .gain("<12 12 12 .2 >")
