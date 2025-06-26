@@ -16,6 +16,7 @@
 ## Playing samples
 
 + `n("x y …").bank(…)` - plays sample numbers x,y,… from bank
++ use [shabda](https://shabda.ndre.gr/) to create speech samples or select free samples
 
 ## Scales
 

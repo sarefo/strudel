@@ -20,6 +20,13 @@
   "reefer": [
     "reefer/00_faster.wav"
   ],
+  "russian": [
+    "russian/00_ноль_ru-RU_m.wav",
+    "russian/01_один_ru-RU_m.wav",
+    "russian/02_два_ru-RU_m.wav",
+    "russian/03_три_ru-RU_m.wav",
+    "russian/04_четыре_ru-RU_m.wav"
+  ],
   "sklavenmacht": [
     "sklavenmacht/00_die.blindheit.ist.vorbei.wav",
     "sklavenmacht/01_sklavenmacht1.wav",
