@@ -10,8 +10,16 @@ n("0")
   //.cut(1)
   .loopAt(4)
   .gain(.4)
-//.hush()
+  .splice(8, "<0 1 2 3 4 5 6 7>*2")
+  //.splice(8, "<0 1 3 7 4 5 3 7>*2")
+  // TODO how to alternate between the two splice patterns?
 
-$:
+_$:
+  n("0 2 3 4")
+  .scale("a#:persian")
+  .sound("piano")
+  .gain(.6)
+
+_$:
   s("[bongo*4 bongo*4 bongo*4 [- - - oh*2]]/4")
   .gain("<12 12 12 .2 >")
