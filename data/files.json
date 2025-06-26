@@ -1,5 +1,12 @@
 [
   {
+    "filename": "googoosh.strudel",
+    "title": "Googoosh",
+    "author": "sarefo",
+    "modified": "2025-06-26",
+    "path": "googoosh.strudel"
+  },
+  {
     "filename": "hello_world.strudel",
     "title": "Hello World!",
     "author": "sarefo",

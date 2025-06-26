@@ -1,0 +1,15 @@
+// @title Googoosh @by sarefo
+
+samples('github:sarefo/strudel')
+      
+
+$: // googoosh loop 
+n("0")
+  .sound("googoosh")
+  .note("c2") // tune sample
+  //.cut(1)
+  .loopAt(4)
+
+_$:
+  s("[hh*4 hh*4 hh*4 oh]/4")
+  .gain(0.4)
