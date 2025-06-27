@@ -24,3 +24,8 @@
 
 + [List of all available scales](https://github.com/tonaljs/tonal/blob/main/packages/scale-type/data.ts)
 +  
+
+## Tutorials etc.
+
++ [Terryds](https://github.com/terryds/awesome-strudel) - 'A curated collection of awesome Strudel resources including tracks, tutorials, and repositories'
++ 

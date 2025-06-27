@@ -12,7 +12,7 @@ stack(
   //.distort(2)
   ._punchcard()  ,
   
-  sound("bd hh sd [oh oh oh]")
+  sound("<bd cb> hh sd [oh <oh -> oh]")
   .bank("RolandTR909")
   //.gain(".8 .6 .8 .1")
   .gain(".4 .2 .4 .1")
@@ -105,3 +105,4 @@ stack(
   */
   
   )
+  
