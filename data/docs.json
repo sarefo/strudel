@@ -6,9 +6,33 @@
     "path": "arrange.md"
   },
   {
+    "filename": "other_tracks.md",
+    "title": "Other Tracks",
+    "modified": "2025-06-27",
+    "path": "other_tracks.md"
+  },
+  {
+    "filename": "samples.md",
+    "title": "Samples",
+    "modified": "2025-06-27",
+    "path": "samples.md"
+  },
+  {
+    "filename": "scales.md",
+    "title": "Scales",
+    "modified": "2025-06-27",
+    "path": "scales.md"
+  },
+  {
     "filename": "scrap.md",
     "title": "Scrap",
-    "modified": "2025-06-26",
+    "modified": "2025-06-27",
     "path": "scrap.md"
+  },
+  {
+    "filename": "visualize.md",
+    "title": "Visualization",
+    "modified": "2025-06-27",
+    "path": "visualize.md"
   }
 ]

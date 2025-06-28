@@ -1,5 +1,12 @@
 [
   {
+    "filename": "googoosh.strudel",
+    "title": "Googoosh",
+    "author": "sarefo",
+    "modified": "2025-06-27",
+    "path": "googoosh.strudel"
+  },
+  {
     "filename": "numbers_station.strudel",
     "title": "Numbers Station 2025-06-23",
     "author": "sarefo",
@@ -7,11 +14,11 @@
     "path": "numbers_station.strudel"
   },
   {
-    "filename": "googoosh.strudel",
-    "title": "Googoosh",
+    "filename": "pelog_1.strudel",
+    "title": "Pelog 1",
     "author": "sarefo",
-    "modified": "2025-06-26",
-    "path": "googoosh.strudel"
+    "modified": "2025-06-27",
+    "path": "pelog_1.strudel"
   },
   {
     "filename": "hello_world.strudel",

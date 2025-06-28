@@ -1,0 +1,104 @@
+// @title Pelog 1 @by sarefo
+
+// samples('github:sarefo/strudel')
+//samples('http://localhost:5432');
+
+let scale = "g:pelog"
+
+// let start = stack (
+  
+// n("0 1 2 3")
+//   .sound("numbers"),
+  
+// s("c c c c")
+//   .sound("hh")
+//   .euclid(5,8)
+//   .room("0 .2 .4 2")
+//   ,
+  
+// s("brakedrum:2")
+//   .euclid(3,8)
+//   .room(4)
+//   .gain('0.4')
+//   ,
+
+  
+// )
+
+let marimba1 =
+  n("[3 4 5 <1 7>]*2")
+  .scale(scale)
+  .sound("gm_marimba:1")
+  .decay(rand.range(.1,1))
+  .room(1)
+  .sometimesBy(.5, x => x.distort("<1.5>")).ribbon(choose("2,2"),3)
+  .someCyclesBy(.5, x =>x.rev())
+  .gain(.15)
+  .pan(.2)
+
+let marimba2 =
+  n("1 1 1 1")
+  .scale(scale)
+  .sound("gm_marimba:<4>")
+  .pan(.8)
+  .room("1 .8 .6 .4")
+  .lpf("2000 800 600 400")
+  .gain(rand.range(.8,1.1))
+
+let piano1 =
+  n("1 1 2 <2 ->")
+  .scale(scale)
+  .sound("piano")
+  .pan("<.5 .6 .7 .8 .7 .6 .5 .4 .3 .2 .3 .4>")
+  .gain(rand.range(.8,1))
+  .someCyclesBy(.5, x => x.n("3 3 3 3")) // TODO doesn't work
+
+let violin1 =
+  n("<<1 1*2> <2 2 2*2> <3 3 3 3*2> <4 1>>")
+  .scale(scale)
+  .sound("gm_violin")
+  .attack(rand.range(.1,.5))
+  .gain(rand.range(.4,.6))
+  .room(1)
+  .pan(rand.range(.8,1))
+  .someCyclesBy(.15, x => x.rev()) // TODO don't think either of these work
+  .someCyclesBy(.5, x => x.jux(rev))
+
+
+let main1 = stack(
+   marimba2,
+)
+let main2 = stack(
+  marimba2,
+  piano1,
+)
+let main3 = stack(
+  marimba2,
+  marimba1,
+  piano1,
+)
+let main4 = stack(
+  marimba2,
+  marimba1,
+  piano1,
+  violin1,
+)
+let end = stack(
+  //s("bd hh hh hh"),
+)
+
+arrange(
+  //[1, start],
+  [2, main1], // marimba2
+  [4, main2], // + piano
+  [8, main3], // + marimba1
+  [32,main4], // + violin
+  [8, main3],
+  [4, main2],
+  //[2, main1],
+  //[1, end]
+  
+)
+//.punchcard()
+.spectrum()
+.color("green")
