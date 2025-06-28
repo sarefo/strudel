@@ -1,17 +1,26 @@
-// @title Hello World! @by sarefo
+/*
+  @title   Hello world
+  @by      sarefo
+  @version 0.1
+  @licence CC BY-NC-SA
+  @url     https://sarefo.github.io/strudel
+  @info    
+*/
 
 samples('github:sarefo/strudel')
-samples('shabda/speech/ru-RU/m:один,два,три,четыре')
+//samples('shabda/speech/ru-RU/m:один,два,три,четыре')
 //samples('http://localhost:5432');
-        
-_$: // play all samples of one sound
+
+let scale = "c:minor"
+
+let sound1 =
   n("[0 1 2 3]/4").sound("sklavenmacht")
 
-_$: // 1-4 in Russian
-  s("один два три четыре")
-  .distort("3")
+let part1 = stack (
+  sound1  
+)
 
-_$: // googoosh loop 
-n("0/2")
-  .sound("googoosh")
-  .note("a2") // tune sample
+arrange (
+  [4, part1]
+)
+.spectrum()
