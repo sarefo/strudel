@@ -1,29 +1,33 @@
-// @title Pelog 1 @by sarefo
+/*
+  @title   Pelog 1
+  @by      sarefo
+  @version 0.1
+  @licence CC BY-NC-SA
+  @url     https://sarefo.github.io/strudel
+  @info    https://en.wikipedia.org/wiki/Pelog
+*/
 
 // samples('github:sarefo/strudel')
-//samples('http://localhost:5432');
+// samples('http://localhost:5432');
 
 let scale = "g:pelog"
 
-// let start = stack (
-  
-// n("0 1 2 3")
-//   .sound("numbers"),
-  
-// s("c c c c")
-//   .sound("hh")
-//   .euclid(5,8)
-//   .room("0 .2 .4 2")
-//   ,
-  
-// s("brakedrum:2")
-//   .euclid(3,8)
-//   .room(4)
-//   .gain('0.4')
-//   ,
-
-  
-// )
+let percussion = stack (
+s("c c c c")
+  .sound("hh")
+  .euclid(5,8)
+  .room("0 .2 .4 2")
+  .gain(.1)
+  ,
+s("brakedrum:2")
+  .euclid(3,8)
+  .room(4)
+  .gain(.1)
+  ,
+)
+.gain(.03)
+.room(4)
+.mask("<1 0 1 0>")
 
 let marimba1 =
   n("[3 4 5 <1 7>]*2")
@@ -32,7 +36,7 @@ let marimba1 =
   .decay(rand.range(.1,1))
   .room(1)
   .sometimesBy(.5, x => x.distort("<1.5>")).ribbon(choose("2,2"),3)
-  .someCyclesBy(.5, x =>x.rev())
+  .someCyclesBy(.5, x => x.rev())
   .gain(.15)
   .pan(.2)
 
@@ -51,7 +55,7 @@ let piano1 =
   .sound("piano")
   .pan("<.5 .6 .7 .8 .7 .6 .5 .4 .3 .2 .3 .4>")
   .gain(rand.range(.8,1))
-  .someCyclesBy(.5, x => x.n("3 3 3 3")) // TODO doesn't work
+  .someCyclesBy(.1, x => x.n("1 1 1 -")) // TODO doesn't work
 
 let violin1 =
   n("<<1 1*2> <2 2 2*2> <3 3 3 3*2> <4 1>>")
@@ -61,9 +65,10 @@ let violin1 =
   .gain(rand.range(.4,.6))
   .room(1)
   .pan(rand.range(.8,1))
-  .someCyclesBy(.15, x => x.rev()) // TODO don't think either of these work
+  .someCyclesBy(.5, x => x.rev()) // TODO don't think either of these work
   .someCyclesBy(.5, x => x.jux(rev))
 
+// ARRANGE //
 
 let main1 = stack(
    marimba2,
@@ -82,19 +87,23 @@ let main4 = stack(
   marimba1,
   piano1,
   violin1,
+  percussion,
 )
-let end = stack(
-  //s("bd hh hh hh"),
+let outro = stack(
+  marimba2,
+  marimba1,
+  piano1,
+  percussion
 )
 
 arrange(
-  //[1, start],
   [2, main1], // marimba2
   [4, main2], // + piano
   [8, main3], // + marimba1
-  [32,main4], // + violin
-  [8, main3],
-  [4, main2],
+  [32,main4], // + violin + percussion
+  [8, outro], // - violin
+  
+  //[4, main2],
   //[2, main1],
   //[1, end]
   
