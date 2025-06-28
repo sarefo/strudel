@@ -31,14 +31,14 @@ $: note(`[[e5 [b4 c5] d5 [c5 b4]]
   .room("<3 2 1 0>/4")
 // [a2 a3 a2 a3 a2 a3 b1 c2]
 
-//$: note(`
-// [[2 []]]
-//`)
-
-samples('shabda/speech/ru-RU/m:ноль,два,три,четыре')
+//samples('shabda/speech/ru-RU/m:ноль,два,три,четыре')
+samples('github:sarefo/strudel')
 
 $: // 1-4 in Russian
-  s("[ три два один ноль ]/4")
+  n("[3 2 1 0]/4")
+  .sound("russian")
+  .begin("[0 .2 .1 .1]/4")
+  //.early("[0 .2 .1 .1]/4")
   .distort(rand.range(1.5, 3.0))
   .gain(.4)
   .freq(rand.range(66,80))
