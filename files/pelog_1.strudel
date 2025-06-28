@@ -1,7 +1,7 @@
 /*
   @title   Pelog 1
   @by      sarefo
-  @version 0.1
+  @version 0.1.2
   @licence CC BY-NC-SA
   @url     https://sarefo.github.io/strudel
   @info    https://en.wikipedia.org/wiki/Pelog
@@ -29,8 +29,9 @@ s("brakedrum:2")
 .room(4)
 .mask("<1 0 1 0>")
 
-let marimba1 =
-  n("[3 4 5 <1 7>]*2")
+const m1 = "[3 4 5 <1 7>]*2"
+let marimba1 = stack (
+  n(m1)
   .scale(scale)
   .sound("gm_marimba:1")
   .decay(rand.range(.1,1))
@@ -38,7 +39,15 @@ let marimba1 =
   .sometimesBy(.5, x => x.distort("<1.5>")).ribbon(choose("2,2"),3)
   .someCyclesBy(.5, x => x.rev())
   .gain(.15)
-  .pan(.2)
+  .pan(.2),
+
+  // two higher, minimally offset, only 50% of time
+  n(m1.add(2).late(rand.range(0,0.01)))
+  .scale(scale)
+  .gain(rand.range(.5,.6))
+  .sound("gm_marimba:5")
+  .mask("<1 0>")
+)
 
 let marimba2 =
   n("1 1 1 1")
