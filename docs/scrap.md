@@ -15,5 +15,5 @@
  
 ## Tutorials etc.
 
++ [Strudel Examples](https://strudel.cc/examples/)
 + [Terryds](https://github.com/terryds/awesome-strudel) - 'A curated collection of awesome Strudel resources including tracks, tutorials, and repositories'
-+ 
