@@ -1,108 +1,141 @@
-// @title Numbers Station 2025-06-23 @by sarefo
+/*
+  @title   Numbers Station 2025-06-23
+  @by      sarefo
+  @licence CC BY-NC-SA
+  @url     https://sarefo.github.io/strudel
+  @info    https://en.wikipedia.org/wiki/Numbers_station
+*/
 
-stack(
+// NOISE //
 
-  // RHYTHM //
-  
+let crackle = 
+  s("crackle")
+  .density(".2")
+  .pan(rand.range(.4,.6))
+  .distort(1)
+  .gain(.6)
+  .room(1.4)
+  //._spectrum()
+
+// CASIO //
+
+let casio =
+  n("1 [7 9] 9 3 <3 3 3 <4 5 4 [5 5 5]> > 3")
+  .sound("casio")
+  .room("<.8 1 1.2 1.4>")
+  .lpf("<800 1200 1600 2000>")
+  .freq(rand.range(9.8,10.2))
+  .distort(1)
+  .gain(rand.range(.08,.1))
+  .pan("<.25 .5 .75 .5>")
+  //._punchcard()
+
+// RHYTHMS //
+
+let rhythm1 =  
   sound("bd!6,hh!4")
   .bank("RolandTR909")
-  .gain(.4)
+  .gain(.33)
   .room(.2)
   .lpf("<600 1200 1800 2400>")
-  //.distort(2)
-  ._punchcard()  ,
-  
+  //._punchcard()  
+
+let rhythm2 =  
+  //sound("<bd cb> hh sd [oh <oh -> oh]")
   sound("<bd cb> hh sd [oh <oh -> oh]")
   .bank("RolandTR909")
-  //.gain(".8 .6 .8 .1")
   .gain(".4 .2 .4 .1")
   .room(".1 .2 .3 .8")
-  ._punchcard()  ,
-  
+  //.mask("<1 1 1 <1 1 1 0>>")
+  //._punchcard()  
+
+let rhythm3 =   
   n("<3 3 3 [3 - 3 - - - - - - - - 3 3]>")
   .sound("east")
   .gain(rand.range(1.0,1.4))
   .freq(rand.range(48,52))
   .room(rand.range(.2,.4))
-  //.rev()
   //._scope()
-  ,
 
-  // VOICE //
-  
+// WAVES //
+
+let harsh_wave =  
+  note("c2!2")
+  .sound("<square sawtooth>")
+  .gain(slider(0.6681,.1,2))
+  .room("<.6! .8! 1! 2!>")
+  .pan(rand.range(0,1))
+  //._spectrum()
+
+let sine =  
+  note("c3!4")
+  .sound("sine")
+  .freq(rand.range(200,300))
+  .gain(rand.range(.8,1.0))
+  .pan(rand.range(.4,.6))
+  //._scope()
+
+// VOICE //
+
+let numbers =  
   n("- 3 4 [- 1 8], <7 [4 8 3 1 -] 2 2 [5 7 3]>")
   .sound("numbers")
   .freq(rand.range(52,88))
-  //.chop(32).cut(1).loopAt(4)
-  //.slice(8, "<5 6>".fast(2))
   .gain(rand.range(.8,1.8))
   .lpf("<800 1200 2000 3000>")
   .room(rand.range(.2,1.2))
-  //.rev()
   //._punchcard()
-  ,
 
-  // CASIO //
-  
-  n("1 [7 9] 9 3 <3 3 3 <4 5 4 [5 5 5]> > 3")
-  .sound("casio")
-  .room("<.8 1 1.2 1.4>")
-  .lpf("<800 1200 1600 2000>")
-  //.clip("<.5 .5 .5 4>")
-  .freq(rand.range(9.8,10.2))
-  .distort(1)
-  .gain(rand.range(.08,.1))
-  //.gain("<.08 .08 .08 .15>")
-  .pan("<0 .25 .5 .75 1 .75 .5 .25>")
-  //.rev()
-  //._punchcard()
-  ,
+// ARRANGE //
 
-  // WAVES //
-  
-  note("c2!2")
-  //note("<c2!2 c2!2 c2!2 [- c2 c2]!2>")
-  .sound("<square sawtooth>")
-  .gain(slider(0.6681,.1,2))
-  //.lpf(rand.range(1000,4000))
-  //.room(2)
-  .room("<.6! .8! 1! 2!>")
-  //.distort(slider(0.834, 0,2))
-  .pan(rand.range(0,1))
-  //._spectrum()
-  ,
+let rhythms = stack (
+  rhythm1,
+  rhythm2,
+  rhythm3,
+)
 
-  note("c3!4")
-  .sound("sine")
-  .gain(rand.range(.8,1.0))
-  //.gain(2)
-  .freq(rand.range(200,300))
-  .pan(rand.range(.4,.6))
-  //._scope()
-  ,
+let waves = stack (
+  harsh_wave,
+  sine
+)
 
-  // NOISE //
-  
-  s("crackle")
-  .density(".2")
-  .pan(rand.range(0,1))
-  .distort(1)
-  .gain(.6)
-  .room(1.4)
-  //.lpf(4000)
-  //._spectrum(),
+let build1 = stack (
+  crackle,
+  casio
+)
+let build2 = stack (
+  crackle,
+  casio,
+  rhythms
+)
+let build3 = stack (
+  crackle,
+  casio,
+  rhythms,
+  waves
+)
 
-  
-  /*
-  n(run(8))
-  .scale("<C:minor G:minor F:minor A:minor>")
-  .s("sawtooth")
-  //.release("<0.5 0.2 2.4>")
-  .phaser(2)
-  .phasersweep("<800 2000 4000>")
-  .gain(0.4)
-  .jux(rev)
-  */
-  
-  )
-  
+let main = stack(
+  crackle,
+  casio,
+  rhythms,
+  waves,
+  numbers,
+)
+
+let outro = stack(
+  crackle,
+  casio,
+  sine
+)
+
+arrange (
+  [2, crackle],
+  [8, build1],  // + casio
+  [8, build2],  // + rhythms
+  [16, build3], // + waves
+  [32, main],   // + numbers
+  // [8, build3], // - waves
+  [8, outro], // only sine + casio
+)
+//.spectrum()
