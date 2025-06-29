@@ -32,6 +32,14 @@
     "path": "hello_world.strudel"
   },
   {
+    "filename": "heres_to_you.strudel",
+    "title": "Here's To You",
+    "author": "Ennio Morricone - Remix by sarefo",
+    "modified": "2025-06-29",
+    "stage": "building",
+    "path": "heres_to_you.strudel"
+  },
+  {
     "filename": "hüpfgemüse.strudel",
     "title": "Hüpfgemüse",
     "author": "sarefo",
