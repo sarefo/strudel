@@ -53,7 +53,7 @@ let percussion = stack(
 )
     .room(.8)
     .pan(rand.range(.3, .7))
-    .gain(.3)
+    .gain(.15)
 
 let part1 = stack(
     organ1,
