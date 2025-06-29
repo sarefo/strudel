@@ -1,4 +1,12 @@
-// @title Googoosh @by sarefo
+/*
+  @title   Googoosh
+  @by      sarefo
+  @version 0.1
+  @licence 
+  @url     
+  @info    
+  @stage   [ ] published [x] building [ ] test
+*/
 
 await samples('github:sarefo/strudel');
       

@@ -1,4 +1,12 @@
-// @title Sandbox @by sarefo
+/*
+  @title   Sandbox
+  @by      sarefo
+  @version 0
+  @licence CC BY-NC-SA
+  @url     https://sarefo.github.io/strudel
+  @info    for playing around
+  @stage   [ ] published [ ] building [x] test
+*/
 
 samples('github:sarefo/strudel')
 samples('shabda/speech/ru-RU/m:один,два,три,четыре')

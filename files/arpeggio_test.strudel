@@ -1,0 +1,33 @@
+/*
+  @title   Arpeggio Test 2025-06-29
+  @by      sarefo
+  @version 0.1
+  @licence CC BY-NC-SA
+  @url     https://sarefo.github.io/strudel
+  @info    
+  @stage   [ ] published [ ] building [x] test
+*/
+
+let one = stack (
+
+  s("oh hh hh hh").gain(.8),
+  s("bd(3,8,<1 2>)").gain(.4).room(0),
+  note("<[g3,b3,e4]@2 [a3,c3,e4]@2>"),
+  note("<g3 g3 g3 -> e3 c3 a2 f2 d2 c2 <a1 a1 a1 <g3 g4 e4 c4>>").sound("saw").lpf("<800 1000 1200 1400>"),
+  // s("[bd*4]"),
+
+)._punchcard()
+
+let two = stack (
+
+  s("<hh hh hh hh>"),
+  s("[oh]*8"),
+  
+)
+
+arrange(
+
+  [4, one],
+  // [2, two]
+  
+)

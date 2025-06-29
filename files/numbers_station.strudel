@@ -1,9 +1,11 @@
 /*
-  @title   Numbers Station 2025-06-23
+  @title   Numbers Station
   @by      sarefo
+  @version 0.1
   @licence CC BY-NC-SA
   @url     https://sarefo.github.io/strudel
   @info    https://en.wikipedia.org/wiki/Numbers_station
+  @stage   [x] published [ ] building [ ] test
 */
 
 // NOISE //

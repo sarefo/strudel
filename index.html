@@ -27,12 +27,28 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            table-layout: fixed;
+        }
+        .file-table th:nth-child(1),
+        .file-table td:nth-child(1) {
+            width: 50%;
+        }
+        .file-table th:nth-child(2),
+        .file-table td:nth-child(2) {
+            width: 30%;
+        }
+        .file-table th:nth-child(3),
+        .file-table td:nth-child(3) {
+            width: 20%;
         }
         .file-table th,
         .file-table td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .file-table th {
             background-color: #4CAF50;
@@ -72,6 +88,15 @@
             text-align: center;
             padding: 20px;
         }
+        #publishedSection, #buildingSection, #testSection {
+            margin-bottom: 40px;
+        }
+        #publishedSection h2, #buildingSection h2, #testSection h2 {
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -79,47 +104,105 @@
         <h1>🎵 Strudel Files Repository</h1>
         <p>Click on any file to open it directly in strudel.cc | <a href="docs/index.html" class="file-link">📚 Documentation</a></p>
         
-        <table class="file-table" id="fileTable">
-            <thead>
-                <tr>
-                    <th class="sortable" data-column="title">Title</th>
-                    <th class="sortable" data-column="author">Author</th>
-                    <th class="sortable" data-column="modified">Modified</th>
-                </tr>
-            </thead>
-            <tbody id="fileTableBody">
-                <tr>
-                    <td colspan="3" class="loading">Loading files...</td>
-                </tr>
-            </tbody>
-        </table>
+        <div id="publishedSection">
+            <h2>📋 Published</h2>
+            <table class="file-table">
+                <thead>
+                    <tr>
+                        <th class="sortable" data-column="title" data-section="published">Title</th>
+                        <th class="sortable" data-column="author" data-section="published">Author</th>
+                        <th class="sortable" data-column="modified" data-section="published">Modified</th>
+                    </tr>
+                </thead>
+                <tbody id="publishedTableBody">
+                    <tr>
+                        <td colspan="3" class="loading">Loading files...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="buildingSection">
+            <h2>🔨 Building</h2>
+            <table class="file-table">
+                <thead>
+                    <tr>
+                        <th class="sortable" data-column="title" data-section="building">Title</th>
+                        <th class="sortable" data-column="author" data-section="building">Author</th>
+                        <th class="sortable" data-column="modified" data-section="building">Modified</th>
+                    </tr>
+                </thead>
+                <tbody id="buildingTableBody">
+                    <tr>
+                        <td colspan="3" class="loading">Loading files...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="testSection">
+            <h2>🧪 Test</h2>
+            <table class="file-table">
+                <thead>
+                    <tr>
+                        <th class="sortable" data-column="title" data-section="test">Title</th>
+                        <th class="sortable" data-column="author" data-section="test">Author</th>
+                        <th class="sortable" data-column="modified" data-section="test">Modified</th>
+                    </tr>
+                </thead>
+                <tbody id="testTableBody">
+                    <tr>
+                        <td colspan="3" class="loading">Loading files...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>
         let filesData = [];
-        let currentSort = { column: 'modified', direction: 'desc' };
+        let currentSort = { 
+            published: { column: 'modified', direction: 'desc' },
+            building: { column: 'modified', direction: 'desc' },
+            test: { column: 'modified', direction: 'desc' }
+        };
 
         async function loadFiles() {
-            const tableBody = document.getElementById('fileTableBody');
-            
             try {
                 // Load file list from JSON
                 const response = await fetch('data/files.json');
                 filesData = await response.json();
                 
-                renderTable();
+                renderTables();
                 
             } catch (error) {
-                tableBody.innerHTML = '<tr><td colspan="3" style="color: red; text-align: center;">Error loading files</td></tr>';
                 console.error('Error loading files:', error);
+                ['published', 'building', 'test'].forEach(stage => {
+                    const tableBody = document.getElementById(`${stage}TableBody`);
+                    tableBody.innerHTML = '<tr><td colspan="3" style="color: red; text-align: center;">Error loading files</td></tr>';
+                });
             }
         }
 
-        async function renderTable() {
-            const tableBody = document.getElementById('fileTableBody');
+        async function renderTables() {
+            const stages = ['published', 'building', 'test'];
+            
+            for (const stage of stages) {
+                const stageFiles = filesData.filter(file => file.stage === stage);
+                await renderTable(stage, stageFiles);
+            }
+        }
+
+        async function renderTable(stage, files) {
+            const tableBody = document.getElementById(`${stage}TableBody`);
             tableBody.innerHTML = '';
 
-            for (const file of filesData) {
+            if (files.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="3" style="color: #999; text-align: center; font-style: italic;">No files in this stage</td></tr>';
+                return;
+            }
+
+            for (const file of files) {
                 try {
                     // Load file content for encoding
                     const response = await fetch(`files/${file.path}`);
@@ -143,15 +226,16 @@
             }
         }
 
-        function sortTable(column) {
-            if (currentSort.column === column) {
-                currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+        function sortTable(column, section) {
+            if (currentSort[section].column === column) {
+                currentSort[section].direction = currentSort[section].direction === 'asc' ? 'desc' : 'asc';
             } else {
-                currentSort.column = column;
-                currentSort.direction = 'asc';
+                currentSort[section].column = column;
+                currentSort[section].direction = 'asc';
             }
 
-            filesData.sort((a, b) => {
+            const sectionFiles = filesData.filter(file => file.stage === section);
+            sectionFiles.sort((a, b) => {
                 let aVal = a[column];
                 let bVal = b[column];
                 
@@ -161,27 +245,27 @@
                     bVal = new Date(bVal);
                 }
                 
-                if (aVal < bVal) return currentSort.direction === 'asc' ? -1 : 1;
-                if (aVal > bVal) return currentSort.direction === 'asc' ? 1 : -1;
+                if (aVal < bVal) return currentSort[section].direction === 'asc' ? -1 : 1;
+                if (aVal > bVal) return currentSort[section].direction === 'asc' ? 1 : -1;
                 return 0;
             });
 
-            // Update header classes
-            document.querySelectorAll('th.sortable').forEach(th => {
+            // Update header classes for this section
+            document.querySelectorAll(`th[data-section="${section}"]`).forEach(th => {
                 th.classList.remove('sort-asc', 'sort-desc');
             });
             
-            const currentHeader = document.querySelector(`th[data-column="${column}"]`);
-            currentHeader.classList.add(currentSort.direction === 'asc' ? 'sort-asc' : 'sort-desc');
+            const currentHeader = document.querySelector(`th[data-column="${column}"][data-section="${section}"]`);
+            currentHeader.classList.add(currentSort[section].direction === 'asc' ? 'sort-asc' : 'sort-desc');
 
-            renderTable();
+            renderTable(section, sectionFiles);
         }
 
         // Add click handlers to sortable headers
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('th.sortable').forEach(th => {
                 th.addEventListener('click', () => {
-                    sortTable(th.dataset.column);
+                    sortTable(th.dataset.column, th.dataset.section);
                 });
             });
             

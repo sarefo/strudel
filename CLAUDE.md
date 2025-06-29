@@ -38,12 +38,17 @@ The repository has a simple static site architecture:
 
 ### Local Development Server
 ```bash
-# From scripts/ directory
+# Check if server is already running
+curl -s http://localhost:8001 > /dev/null && echo "Server already running" || echo "Server not running"
+
+# From scripts/ directory (only if not already running)
 ./run_server.sh
 # Or manually:
 python3 -m http.server 8001 --directory ../
 ```
 The site will be available at http://localhost:8001 (main interface at http://localhost:8001/index.html)
+
+**Note**: Generally, the local server will already be running at port 8001. Always check if it's running before attempting to start it.
 
 ### Update File Metadata
 ```bash
