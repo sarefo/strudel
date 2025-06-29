@@ -18,6 +18,7 @@ let scale = "c:minor"
 
 let intro = stack (
   n("<0 ->").sound("darkstar")
+  .room(1)
 )
 
 let hüpfgemüse1 = 
@@ -34,16 +35,19 @@ let hüpfgemüse2 =
   n("0(3,4)").sound("darkstar")
   .note("[f2]")
   .slice(16, "<2*2 8*2 10*2> <4*2 6*2> <3*2 5*2>").palindrome()
-  // .mask(rand.range(0,1))
-  .lpf(400)
-  .room(1)
-  .echo(2, 0.6, .8)
   .speed(2)
+  // .mask(rand.range(0,1))
+  .distort(2)
+  .lpf(200)
+  .room(2)
+  .echo(2, 0.6, .8)
+  .gain(.4)
   // ._punchcard()
 
 let main = stack (
   // s("1 2 3 4").sound("hh").bank("RolandTR909")
   // s("oh hh hh hh").bank("RolandTR909"),
+  // hüpfgemüse1,
   hüpfgemüse2,
   
 )
