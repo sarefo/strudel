@@ -28,10 +28,14 @@ let organ1_line3 = "[2 1 4 0]"
 let organ1_line4 = "[0 1 2 -2]"
 
 let organ2_line1 = "[2 1 0 -1]"
+let organ2_line2a = "[2 1 0 -1]"
+let organ2_line2b = "[2 1 0 1]"
 let organ2_line2 = "[2 1 0 <-1 1>]"
+let organ2_line3a = "[4 3 3 2]"
+let organ2_line3b = "[4 3 [3 [4 3]] 2]"
 let organ2_line3 = "<[4 3 3 2] [4 3 [3 [4 3]] 2]>"
-// let organ2_line4 = "[2 3 [2 1] 2]" // variant A
-// let organ2_line4 = "[[2@2 1 2 3@2 5@2]@2 [2 1] 2]" // variant B
+let organ2_line4a = "[2 3 [2 1] 2]" // variant A
+let organ2_line4b = "[[2@2 1 2 3@2 5@2]@2 [2 1] 2]" // variant B
 let organ2_line4 = "<[2 3 [2 1] 2] [[2@2 1 2 3@2 5@2]@2 [2 1] 2]>" // variant <A B>
 
 let voice_line1 = "[2@3 0 1@3 -1 0 -1 -2 -1@5]"
@@ -50,6 +54,8 @@ let organ1 =
 
 let organ2 =
     n(cat(organ2_line1, organ2_line2, organ2_line3, organ2_line4))
+        // TODO does not choose, instead plays none:
+        // n(cat(organ2_line1, choose(organ2_line2a, organ2_line2b), choose(organ2_line3a, organ2_line3b), choose(organ2_line4a, organ2_line4b)))
         .sound("gm_drawbar_organ")
         // .sound("piano")
         .scale(scale)
@@ -67,6 +73,8 @@ let melody1 =
         .gain(rand.range(.8, 1))
         .pan(.5)
 
+
+// does not fit here :)
 let percussion = stack(
     n("0(3,8)").s("<hh hh*4>"),
     n("0(2,4)").s("bd"),
