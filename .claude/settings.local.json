@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git -C /mnt/c/Users/stefa/OneDrive/Documents/GitHub/sarefo.github.io log --oneline -10)"
+      "Bash(git -C /mnt/c/Users/stefa/OneDrive/Documents/GitHub/sarefo.github.io log --oneline -10)",
+      "WebFetch(domain:strudel.cc)",
+      "Bash(curl:*)",
+      "Bash(python3:*)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }
