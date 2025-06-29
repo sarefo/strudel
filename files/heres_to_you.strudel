@@ -62,7 +62,7 @@ let part1 = stack(
 )
 
 arrange(
-    // [16*2, organ1],
+    [16 * 2, organ1],
     [16 * 4, part1]
 )
 // .spectrum()
