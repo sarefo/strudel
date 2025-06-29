@@ -32,6 +32,14 @@
     "path": "hello_world.strudel"
   },
   {
+    "filename": "hüpfgemüse.strudel",
+    "title": "Hüpfgemüse",
+    "author": "sarefo",
+    "modified": "2025-06-29",
+    "stage": "test",
+    "path": "hüpfgemüse.strudel"
+  },
+  {
     "filename": "korobeiniki_test_1.strudel",
     "title": "Korobeiniki Test 2025-06-25",
     "author": "sarefo",

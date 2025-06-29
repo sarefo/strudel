@@ -1,0 +1,60 @@
+/*
+  @title   Hüpfgemüse
+  @by      sarefo
+  @version 0.1
+  @license CC BY-NC-SA
+  @url     https://sarefo.github.io/strudel
+  @details    
+  @stage   [ ] published [ ] building [x] test
+*/
+
+samples('github:sarefo/strudel')
+//samples('shabda/speech/ru-RU/m:один,два,три,четыре')
+//samples('http://localhost:5432');
+
+setcpm(90/4)
+
+let scale = "c:minor"
+
+let intro = stack (
+  n("<0 ->").sound("darkstar")
+)
+
+let hüpfgemüse1 = 
+  n("<0 ->")
+  .sound("darkstar")
+  .note("[f2]")
+  .slice(8, "[5 5*2 5 5]")
+  .loopAt(2)
+  .end(1.1)
+  .room(1)
+  .gain(.6)
+
+let hüpfgemüse2 =
+  n("0(3,4)").sound("darkstar")
+  .note("[f2]")
+  .slice(16, "<2*2 8*2 10*2> <4*2 6*2> <3*2 5*2>").palindrome()
+  // .mask(rand.range(0,1))
+  .lpf(400)
+  .room(1)
+  .echo(2, 0.6, .8)
+  .speed(2)
+  // ._punchcard()
+
+let main = stack (
+  // s("1 2 3 4").sound("hh").bank("RolandTR909")
+  // s("oh hh hh hh").bank("RolandTR909"),
+  hüpfgemüse2,
+  
+)
+
+
+// let part1 = stack (
+//   sound1  
+// )
+
+arrange (
+  [2, intro],
+  [16, main]
+)
+// .spectrum()
