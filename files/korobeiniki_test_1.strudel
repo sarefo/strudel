@@ -2,9 +2,9 @@
   @title   Korobeiniki Test 2025-06-25
   @by      sarefo
   @version 0.1
-  @licence CC BY-NC-SA
+  @license CC BY-NC-SA
   @url     https://sarefo.github.io/strudel
-  @info    https://en.wikipedia.org/wiki/Numbers_station
+  @details    https://en.wikipedia.org/wiki/Numbers_station
   @stage   [ ] published [ ] building [x] test
 */
 

@@ -2,9 +2,9 @@
   @title   Pelog 1
   @by      sarefo
   @version 0.1.2
-  @licence CC BY-NC-SA
+  @license CC BY-NC-SA
   @url     https://sarefo.github.io/strudel
-  @info    https://en.wikipedia.org/wiki/Pelog
+  @details    https://en.wikipedia.org/wiki/Pelog
   @stage   [x] published [ ] building [ ] test
 */
 
