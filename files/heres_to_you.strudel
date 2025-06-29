@@ -14,7 +14,7 @@
 
 setcpm(60)
 
-let scale = "d:major" // orchestra score (##)
+let scale = "d3:major" // orchestra score (##)
 //   d   e  f#  g  a  b  c#
 //  -7  -6 -5  -4 -3 -2 -1 
 //   d e f# g a b c# d
