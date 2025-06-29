@@ -6,13 +6,14 @@ import datetime
 from pathlib import Path
 
 def extract_title_and_author(strudel_file_path):
-    """Extract the title, author, and stage from a strudel file."""
+    """Extract the title, author, version, and stage from a strudel file."""
     try:
         with open(strudel_file_path, 'r', encoding='utf-8') as file:
             content = file.read()
-            # Look for @title and @by in comments
+            # Look for @title, @by, and @version in comments
             title_match = re.search(r'@title\s+(.+?)(?:\s+@by|\n|$)', content)
             author_match = re.search(r'@by\s+(.+?)(?:\n|$)', content)
+            version_match = re.search(r'@version\s+(.+?)(?:\n|$)', content)
             
             # Look for @stage with [x] checkboxes
             stage_match = re.search(r'@stage\s+(.+?)(?:\n|$)', content)
@@ -28,12 +29,13 @@ def extract_title_and_author(strudel_file_path):
             
             title = title_match.group(1).strip() if title_match else None
             author = author_match.group(1).strip() if author_match else None
+            version = version_match.group(1).strip() if version_match else None
             
-            return title, author, stage
+            return title, author, version, stage
     except Exception as e:
         print(f"Error reading {strudel_file_path}: {e}")
     
-    return None, None, "test"
+    return None, None, None, "test"
 
 def extract_markdown_title(md_file_path):
     """Extract the title from a markdown file (first H1 heading)."""
@@ -68,8 +70,8 @@ def generate_strudel_file_list():
                 rel_path = os.path.relpath(os.path.join(root, file), str(files_dir))
                 full_path = os.path.join(root, file)
                 
-                # Extract title, author, and stage
-                title, author, stage = extract_title_and_author(full_path)
+                # Extract title, author, version, and stage
+                title, author, version, stage = extract_title_and_author(full_path)
                 
                 # Get file modification time
                 mod_time = os.path.getmtime(full_path)
@@ -82,6 +84,7 @@ def generate_strudel_file_list():
                     "filename": file,
                     "title": display_title,
                     "author": author or "Unknown",
+                    "version": version,
                     "modified": mod_date,
                     "stage": stage,
                     "path": rel_path.replace('\\', '/')  # Use forward slashes for URLs

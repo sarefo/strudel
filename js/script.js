@@ -17,7 +17,7 @@ async function loadFiles() {
         console.error('Error loading files:', error);
         ['published', 'building', 'test'].forEach(stage => {
             const tableBody = document.getElementById(`${stage}TableBody`);
-            tableBody.innerHTML = '<tr><td colspan="3" style="color: red; text-align: center;">Error loading files</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="4" style="color: red; text-align: center;">Error loading files</td></tr>';
         });
     }
 }
@@ -36,7 +36,7 @@ async function renderTable(stage, files) {
     tableBody.innerHTML = '';
 
     if (files.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="3" style="color: #999; text-align: center; font-style: italic;">No files in this stage</td></tr>';
+        tableBody.innerHTML = '<tr><td colspan="4" style="color: #999; text-align: center; font-style: italic;">No files in this stage</td></tr>';
         return;
     }
 
@@ -53,6 +53,7 @@ async function renderTable(stage, files) {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td><a href="${strudelUrl}" target="_blank" class="file-link">${file.title}</a></td>
+                <td>${file.version || '-'}</td>
                 <td>${file.author}</td>
                 <td>${file.modified}</td>
             `;

@@ -3,6 +3,7 @@
     "filename": "80s_synth_test.strudel",
     "title": "80s Synth Test",
     "author": "seed from strudel docs",
+    "version": "0.1",
     "modified": "2025-06-29",
     "stage": "test",
     "path": "80s_synth_test.strudel"
@@ -11,6 +12,7 @@
     "filename": "arpeggio_test.strudel",
     "title": "Arpeggio Test 2025-06-29",
     "author": "sarefo",
+    "version": "0.1",
     "modified": "2025-06-29",
     "stage": "test",
     "path": "arpeggio_test.strudel"
@@ -19,6 +21,7 @@
     "filename": "googoosh.strudel",
     "title": "Googoosh",
     "author": "sarefo",
+    "version": "0.1",
     "modified": "2025-06-29",
     "stage": "building",
     "path": "googoosh.strudel"
@@ -27,6 +30,7 @@
     "filename": "hello_world.strudel",
     "title": "Hello world",
     "author": "sarefo",
+    "version": "0.1",
     "modified": "2025-06-29",
     "stage": "test",
     "path": "hello_world.strudel"
@@ -35,6 +39,7 @@
     "filename": "heres_to_you.strudel",
     "title": "Here's To You",
     "author": "Ennio Morricone - Remix by sarefo",
+    "version": "0.1",
     "modified": "2025-06-29",
     "stage": "building",
     "path": "heres_to_you.strudel"
@@ -43,6 +48,7 @@
     "filename": "hüpfgemüse.strudel",
     "title": "Hüpfgemüse",
     "author": "sarefo",
+    "version": "0.1",
     "modified": "2025-06-29",
     "stage": "test",
     "path": "hüpfgemüse.strudel"
@@ -51,6 +57,7 @@
     "filename": "korobeiniki_test_1.strudel",
     "title": "Korobeiniki Test 2025-06-25",
     "author": "sarefo",
+    "version": "0.1",
     "modified": "2025-06-29",
     "stage": "test",
     "path": "korobeiniki_test_1.strudel"
@@ -59,6 +66,7 @@
     "filename": "numbers_station.strudel",
     "title": "Numbers Station",
     "author": "sarefo",
+    "version": "0.1",
     "modified": "2025-06-29",
     "stage": "published",
     "path": "numbers_station.strudel"
@@ -67,6 +75,7 @@
     "filename": "pelog_1.strudel",
     "title": "Pelog 1",
     "author": "sarefo",
+    "version": "0.1.2",
     "modified": "2025-06-29",
     "stage": "published",
     "path": "pelog_1.strudel"
@@ -75,6 +84,7 @@
     "filename": "sandbox.strudel",
     "title": "Sandbox",
     "author": "sarefo",
+    "version": "0",
     "modified": "2025-06-29",
     "stage": "test",
     "path": "sandbox.strudel"
