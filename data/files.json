@@ -1,5 +1,26 @@
 [
   {
+    "filename": "hello_world.strudel",
+    "title": "Hello world",
+    "author": "sarefo",
+    "modified": "2025-06-28",
+    "path": "hello_world.strudel"
+  },
+  {
+    "filename": "korobeiniki_test_1.strudel",
+    "title": "Korobeiniki Test 2025-06-25",
+    "author": "Unknown",
+    "modified": "2025-06-28",
+    "path": "korobeiniki_test_1.strudel"
+  },
+  {
+    "filename": "pelog_1.strudel",
+    "title": "Pelog 1",
+    "author": "sarefo",
+    "modified": "2025-06-28",
+    "path": "pelog_1.strudel"
+  },
+  {
     "filename": "googoosh.strudel",
     "title": "Googoosh",
     "author": "sarefo",
@@ -12,27 +33,6 @@
     "author": "sarefo",
     "modified": "2025-06-27",
     "path": "numbers_station.strudel"
-  },
-  {
-    "filename": "pelog_1.strudel",
-    "title": "Pelog 1",
-    "author": "sarefo",
-    "modified": "2025-06-27",
-    "path": "pelog_1.strudel"
-  },
-  {
-    "filename": "hello_world.strudel",
-    "title": "Hello World!",
-    "author": "sarefo",
-    "modified": "2025-06-26",
-    "path": "hello_world.strudel"
-  },
-  {
-    "filename": "korobeiniki_test_1.strudel",
-    "title": "Korobeiniki Test 2025-06-25",
-    "author": "Unknown",
-    "modified": "2025-06-26",
-    "path": "korobeiniki_test_1.strudel"
   },
   {
     "filename": "sandbox.strudel",

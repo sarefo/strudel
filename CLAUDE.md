@@ -43,7 +43,7 @@ The repository has a simple static site architecture:
 # Or manually:
 python3 -m http.server 8001 --directory ../
 ```
-The site will be available at http://localhost:8001
+The site will be available at http://localhost:8001 (main interface at http://localhost:8001/index.html)
 
 ### Update File Metadata
 ```bash
@@ -51,6 +51,34 @@ The site will be available at http://localhost:8001
 python3 update_data.py
 ```
 This regenerates `data/files.json` and `data/docs.json` based on current files.
+
+### Test Strudel Files
+```bash
+# Test a .strudel file directly in strudel.cc using puppeteer
+python3 scripts/test_strudel_file.py files/your_file.strudel
+```
+This script:
+- URL-encodes the Strudel file content
+- Opens it directly in strudel.cc using puppeteer
+- Attempts to click the play button and start playback
+- Checks for JavaScript errors and audio context status
+- Takes screenshots for visual verification (saved to temp/screenshots/)
+- Provides comprehensive debugging output
+
+**Puppeteer Setup:**
+The test script automatically handles both local and global puppeteer installations. To use global puppeteer:
+```bash
+# Remove local installation (if exists)
+rm -rf node_modules package-lock.json
+
+# Install globally
+npm install -g puppeteer
+
+# Verify global installation
+npm list -g --depth=0 | grep puppeteer
+```
+
+The script will automatically fall back to the global installation if local puppeteer is not found.
 
 ### File Organization
 

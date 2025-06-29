@@ -12,6 +12,12 @@
     "path": "other_tracks.md"
   },
   {
+    "filename": "questions.md",
+    "title": "Questions and Problems",
+    "modified": "2025-06-27",
+    "path": "questions.md"
+  },
+  {
     "filename": "samples.md",
     "title": "Samples",
     "modified": "2025-06-27",
@@ -26,7 +32,7 @@
   {
     "filename": "scrap.md",
     "title": "Scrap",
-    "modified": "2025-06-27",
+    "modified": "2025-06-28",
     "path": "scrap.md"
   },
   {
