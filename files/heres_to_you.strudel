@@ -48,6 +48,7 @@ let organ1 =
         .sound("gm_drawbar_organ")
         .scale(scale)
         .slow(4)
+        .late(rand.range(0, .02))
         .room(1)
         .gain(rand.range(.6, .8))
         .pan(.6)
@@ -60,6 +61,7 @@ let organ2 =
         // .sound("piano")
         .scale(scale)
         .slow(4)
+        .late(rand.range(0, .02))
         .room(1)
         .gain(rand.range(.8, 1))
         .pan(.4)
@@ -70,6 +72,7 @@ let melody1 =
         .scale(scale)
         .slow(4)
         .begin(rand.range(.1, .5)) // TODO not sure works
+        .late(rand.range(0, .02))
         .gain(rand.range(.8, 1))
         .pan(.5)
 
@@ -99,9 +102,11 @@ let part1 = stack(
     organ1,
     organ2,
     melody1,
-    percussion
+    // percussion
     // melody2,
 )
+
+// all(x => x.late(rand.range(0,.02)))
 
 arrange(
     // [16 * 1, pre1],
