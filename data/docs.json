@@ -32,8 +32,14 @@
   {
     "filename": "scrap.md",
     "title": "Scrap",
-    "modified": "2025-06-28",
+    "modified": "2025-06-29",
     "path": "scrap.md"
+  },
+  {
+    "filename": "tutorials.md",
+    "title": "Tutorials etc.",
+    "modified": "2025-06-29",
+    "path": "tutorials.md"
   },
   {
     "filename": "visualize.md",

@@ -8,20 +8,28 @@
   @stage   [ ] published [ ] building [ ] test
 */
 
-samples('github:sarefo/strudel')
+//samples('github:sarefo/strudel')
 //samples('shabda/speech/ru-RU/m:один,два,три,четыре')
 //samples('http://localhost:5432');
+
+setcpm(120 / 2)
 
 let scale = "c:minor"
 
 let sound1 =
-  n("[0 1 2 3]/4").sound("sklavenmacht")
+    n("[0 1 2 3]/4")
+        .sound("piano")
+        .scale(scale)
 
-let part1 = stack (
-  sound1  
+let part1 = stack(
+    sound1,
 )
 
-arrange (
-  [4, part1]
+// Filters for all voices
+all(x => x.lpf(mousex.segment(4).range(200, 2800))) // tracks mouse movement (x axis)
+
+arrange(
+    [4, part1],
 )
-.spectrum()
+    .spectrum()
+
