@@ -1,0 +1,46 @@
+/*
+  @title   Sklavenmacht
+  @by      sarefo
+  @version 0.1
+  @license CC BY-NC-SA
+  @url     https://sarefo.github.io/strudel
+  @details    for playing around
+  @stage   [ ] published [x] building [ ] test
+*/
+
+samples('github:sarefo/strudel')
+// samples('shabda/speech/ru-RU/m:один,два,три,четыре')
+//samples('http://localhost:5432');
+
+// sklavenmacht samples:
+// 0 "die blindheit ist vorbei"
+// 1-4 variations of "sklavenmacht"
+
+let blindheit =
+    n("0").sound("sklavenmacht")
+
+let sklavenmacht =
+    n("[1 2 3 4]/4").sound("sklavenmacht")
+        .begin("[0.01 0.01 0 .03]/4")
+
+// cropped "sklaven"
+let sklaven1 = s("sklavenmacht:1").begin(.01).end(.4)
+let sklaven2 = s("sklavenmacht:2").begin(.02).end(.4)
+let sklaven3 = s("sklavenmacht:3").begin(.01).end(.4)
+let sklaven4 = s("sklavenmacht:4").begin(.02).end(.58)
+
+// TODO
+// - make organic random
+// - less distance between "sklavenmacht + sklaven"
+let sklaven_macht_sklaven = stack(
+    cat(sklaven4, sklaven3, sklaven1, sklaven2),
+    cat(sklavenmacht, sklaven1)
+)
+
+arrange(
+    [1, blindheit],
+    [32, sklaven_macht_sklaven],
+    // [8, cat(sklaven1, sklaven2, sklaven3, sklaven4)],
+    // [8, sklavenmacht],
+    // [8, chop],
+)

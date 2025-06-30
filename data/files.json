@@ -90,6 +90,15 @@
     "path": "pelog_1.strudel"
   },
   {
+    "filename": "sample_demo.strudel",
+    "title": "Sample Demo",
+    "author": "sarefo",
+    "version": "0.1",
+    "modified": "2025-06-29",
+    "stage": "test",
+    "path": "sample_demo.strudel"
+  },
+  {
     "filename": "sandbox.strudel",
     "title": "Sandbox",
     "author": "sarefo",
@@ -97,5 +106,14 @@
     "modified": "2025-06-29",
     "stage": "test",
     "path": "sandbox.strudel"
+  },
+  {
+    "filename": "sklavenmacht.strudel",
+    "title": "Sklavenmacht",
+    "author": "sarefo",
+    "version": "0.1",
+    "modified": "2025-06-29",
+    "stage": "building",
+    "path": "sklavenmacht.strudel"
   }
 ]

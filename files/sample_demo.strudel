@@ -1,0 +1,37 @@
+/*
+  @title   Sample Demo
+  @by      sarefo
+  @version 0.1
+  @license CC BY-NC-SA
+  @url     https://sarefo.github.io/strudel
+  @details    
+  @stage   [ ] published [ ] building [x] test
+*/
+
+samples('github:sarefo/strudel')
+//samples('shabda/speech/ru-RU/m:один,два,три,четыре')
+//samples('http://localhost:5432');
+
+setcpm(120)
+
+let scale = "c:minor"
+
+//let sidechain = 0 // dj_dave: side-chain multiple instruments
+
+let sound1 =
+    n("<4 3 4 2 3 1 2 2>")
+        .sound("gm_dulcimer")
+        .scale(scale)
+        .postgain(sidechain) // add to all instruments you want to sidechain
+        .postgain(1) // can override earlier ones
+
+let part1 = stack(
+    sound1,
+)
+
+
+arrange(
+    [4, part1],
+)
+    .spectrum()
+
