@@ -76,15 +76,15 @@ let melody1 =
 
 // does not fit here :)
 let percussion = stack(
-    n("0(3,8)").s("<hh hh*4>"),
     n("0(2,4)").s("bd"),
-    n("0 0*2 0 2*2").s("lt").gain(8),
-    n("0(5,8)").s("oh").gain(.3)
+    n("0(3,8)").s("<hh hh*4>").gain(6),
+    n("0(5,8)").s("oh").postgain(.3),
+    // n("0 0*2 0 2*2").s("lt").gain(6),
 )
     .room(.8)
     .pan(rand.range(.3, .7))
-    .gain(.08)
     .mask("[1 1 1 1 <1 0> 1 <1 0> 1]")
+    .postgain(.04)
     ._punchcard()
 
 let pre1 = stack(
@@ -99,13 +99,13 @@ let part1 = stack(
     organ1,
     organ2,
     melody1,
-    // percussion
+    percussion
     // melody2,
 )
 
 arrange(
-    [16 * 1, pre1],
-    [16 * 2, pre2],
+    // [16 * 1, pre1],
+    // [16 * 2, pre2],
     [16 * 4, part1]
 )
 // .spectrum()

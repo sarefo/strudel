@@ -63,6 +63,15 @@
     "path": "korobeiniki_test_1.strudel"
   },
   {
+    "filename": "morse_demo.strudel",
+    "title": "Morse Demo",
+    "author": "froos",
+    "version": "1.0",
+    "modified": "2025-06-29",
+    "stage": "test",
+    "path": "morse_demo.strudel"
+  },
+  {
     "filename": "numbers_station.strudel",
     "title": "Numbers Station",
     "author": "sarefo",
