@@ -1,31 +1,37 @@
 # Rhythms
 
 ## Euclidean rhythms
-```
-E(2,5)=[x . x . .] = (23) (classical, jazz, and Persian).
-E(3,7)=[x . x . x . .] = (223) (Bulgarian folk).
-E(4,9) = [x . x . x . x . .] = (2223) (Turkey).
-E(5,11)=[x . x . x . x . x . .] = (22223) (classical).
-E(5,16) = [x . . x . . x . . x . . x . . . .] = (33334) (Brazilian necklace).
++ `E(x,y)` - tries to fit x steps into y steps, as distanced as possible
++ `E(x,y, z)` - shifts by z steps to the left
 
-The following Euclidean rhythms are reverse Euclidean strings:
-E(2,3) = [x . x] = (21) (West Africa, Latin America).
-E(3,4)=[x . x x] = (211) (Trinidad, Persia).
-E(3,5)=[x . x . x] = (221) (Rumanian and Persian necklaces).
-E(3,8)=[x . . x . . x .] = (332) (West Africa).
-E(4,7)=[x . x . x . x] = (2221) (Bulgaria).
-E(4,11) = [x . . x . . x . . x .] = (3332) (Frank Zappa).
-E(5,6)=[x . x x x x] = (21111) (Arab).
-E(5,7)=[x . x x . x x] = (21211) (Arab).
-E(5,9)=[x . x . x . x . x] = (22221) (Arab rhythm, South African and Rumanian necklaces).
-E(5,12) = [x . . x . x . . x . x .] = (32322) (South Africa).
-E(7,8) = [x . x x x x x x] = (2111111) (Tuareg rhythm of Libya).
-E(7,16) = [x . . x . x . x . . x . x . x .] = (3223222) (Brazilian necklace).
-E(11,24) = [x . . x . x . x . x . x . . x . x . x . x . x .] = (32222322222) (Central Africa).
 
-The following Euclidean rhythms are neither Euclidean nor reverse Euclidean strings:
-E(5,8)=[x . x x . x x .] = (21212) (West Africa).
-E(7,12) = [x . x x . x . x x . x .] = (2122122) (West Africa).
-E(9,16) = [x . x x . x . x . x x . x . x .] = (212221222) (West and Central African, and Brazilian necklaces).
-E(13,24) = [x . x x . x . x . x . x . x x . x . x . x . x .] = (2122222122222) (Central African necklace).
-```
+|   Rhythm   |          Pattern           |                    Origin/Description                     |
+| :--------: | :------------------------: | :-------------------------------------------------------: |
+|   (2,5)    |          [x.x..]           |       Classical, jazz, and Persian (Khafif-e-ramal)       |
+|   (3,7)    |         [x.x.x..]          |                Bulgarian folk (Ruchenitza)                |
+|   (4,9)    |        [x.x.x.x..]         |                      Turkey (Aksak)                       |
+|   (5,11)   |       [x.x.x.x.x..]        |                         Classical                         |
+|   (5,16)   |    [x..x..x..x..x....]     |              Brazilian necklace (Bossa-Nova)              |
+|   (2,3)    |           [x.x]            |                West Africa, Latin America                 |
+|   (3,4)    |           [x.xx]           |       Calypso (Trinidad), Cumbia (Colombia), Persia       |
+|   (3,5)    |          [x.x.x]           |              Rumanian and Persian necklaces               |
+|   (3,8)    |         [x..x..x.]         |               West Africa, Tresillo (Cuba)                |
+|   (4,7)    |         [x.x.x.x]          |                   Bulgaria (Ruchenitza)                   |
+|   (4,11)   |       [x..x..x..x.]        |                 Frank Zappa (Outside Now)                 |
+|   (5,6)    |          [x.xxxx]          |                     Arab (York-Samai)                     |
+|   (5,7)    |         [x.xx.xx]          |                      Arab (Nawakhat)                      |
+|   (5,9)    |        [x.x.x.x.x]         |     Arab rhythm, South African and Rumanian necklaces     |
+|   (5,12)   |       [x..x.x..x.x.]       |                       South Africa                        |
+|   (7,8)    |         [x.xxxxxx]         |                  Tuareg rhythm of Libya                   |
+|   (7,16)   |     [x..x.x.x..x.x.x.]     |                    Brazilian necklace                     |
+|  (11,24)   | [x..x.x.x.x.x..x.x.x.x.x.] |                      Central Africa                       |
+|   (5,8)    |         [x.xx.xx.]         |              West Africa, Cuba (Quinquillo)               |
+|   (7,12)   |       [x.xx.x.xx.x.]       |                        West Africa                        |
+|   (9,16)   |     [x.xx.x.x.xx.x.x.]     |     West and Central African, and Brazilian necklaces     |
+|  (13,24)   | [x.xx.x.x.x.x.xx.x.x.x.x.] |                 Central African necklace                  |
+|  (3,5,2)   |                            |    Khafif-e-ramal (Persia), Rumanian folk-dance rhythm    |
+|   (5,11)   |                            |                 Pictures at an Exhibition                 |
+|   (5,12)   |                            | Venda clapping pattern of a South African children’s song |
+| (7,16,14)  |                            |            A Samba rhythm necklace from Brazil            |
+| (11,24,14) |                            |  A rhythm necklace of the Aka Pygmies of Central Africa   |
+| (13,24,5)  |                            |  Rhythm necklace of the Aka Pygmies of the upper Sangha   |
