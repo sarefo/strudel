@@ -1,8 +1,17 @@
 [
   {
+    "filename": "heres_to_you.strudel",
+    "title": "Here's To You",
+    "author": "Ennio Morricone - Remix by sarefo",
+    "version": "0.1",
+    "modified": "2025-06-30",
+    "stage": "building",
+    "path": "heres_to_you.strudel"
+  },
+  {
     "filename": "80s_synth_test.strudel",
     "title": "80s Synth Test",
-    "author": "seed from strudel docs",
+    "author": "Seed from strudel docs - Remix by sarefo",
     "version": "0.1",
     "modified": "2025-06-29",
     "stage": "test",
@@ -34,15 +43,6 @@
     "modified": "2025-06-29",
     "stage": "test",
     "path": "hello_world.strudel"
-  },
-  {
-    "filename": "heres_to_you.strudel",
-    "title": "Here's To You",
-    "author": "Ennio Morricone - Remix by sarefo",
-    "version": "0.1",
-    "modified": "2025-06-29",
-    "stage": "building",
-    "path": "heres_to_you.strudel"
   },
   {
     "filename": "hüpfgemüse.strudel",

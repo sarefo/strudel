@@ -6,6 +6,12 @@
     "path": "arrange.md"
   },
   {
+    "filename": "notation.md",
+    "title": "Notation",
+    "modified": "2025-06-30",
+    "path": "notation.md"
+  },
+  {
     "filename": "other_tracks.md",
     "title": "Other Tracks",
     "modified": "2025-06-27",
@@ -16,6 +22,12 @@
     "title": "Questions and Problems",
     "modified": "2025-06-27",
     "path": "questions.md"
+  },
+  {
+    "filename": "rhythms.md",
+    "title": "Rhythms",
+    "modified": "2025-06-30",
+    "path": "rhythms.md"
   },
   {
     "filename": "samples.md",
