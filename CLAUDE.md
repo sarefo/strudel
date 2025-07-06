@@ -101,3 +101,19 @@ The script will automatically fall back to the global installation if local pupp
 - The main interface dynamically loads and encodes .strudel files for strudel.cc integration
 - File metadata is cached in JSON files and should be regenerated when files change
 - The repository uses GitHub Pages for hosting at the main branch
+
+## Strudel Code Logic
+
+When working with Strudel code logic, patterns, or syntax, ALWAYS use the Context7 MCP server to access up-to-date Strudel documentation. Use the following approach:
+
+1. First resolve the library ID: `mcp__context7__resolve-library-id` with `libraryName: "strudel"`
+2. Then get documentation: `mcp__context7__get-library-docs` with `context7CompatibleLibraryID: "/tidalcycles/strudel"`
+
+This ensures accurate understanding of:
+- Pattern syntax and functions (e.g., `note()`, `s()`, `cat()`, `seq()`)
+- Mini-notation syntax (e.g., `"c3 [e3 g3]*2"`)
+- Audio sample handling and sound selection
+- Timing and sequencing functions (e.g., `slow()`, `fast()`, `rev()`)
+- Effects and transformations (e.g., `add()`, `jux()`, `off()`)
+- Method chaining patterns (e.g., `.note().s("piano").room(0.5)`)
+- Proper Strudel coding conventions and best practices

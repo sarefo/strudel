@@ -9,7 +9,8 @@
       "Bash(mkdir:*)",
       "Bash(mv:*)",
       "Bash(grep:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "mcp__context7__get-library-docs"
     ],
     "deny": []
   }
