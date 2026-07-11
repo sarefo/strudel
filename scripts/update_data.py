@@ -188,7 +188,7 @@ def main():
     strudel_json_path = data_dir / 'files.json'
     data_dir.mkdir(exist_ok=True)
     
-    with open(strudel_json_path, 'w', encoding='utf-8') as json_file:
+    with open(strudel_json_path, 'w', encoding='utf-8', newline='\n') as json_file:
         json.dump(strudel_files, json_file, indent=2, ensure_ascii=False)
     
     print(f"Generated {strudel_json_path} with {len(strudel_files)} strudel files")
@@ -199,7 +199,7 @@ def main():
     # Write docs JSON
     docs_json_path = data_dir / 'docs.json'
     
-    with open(docs_json_path, 'w', encoding='utf-8') as json_file:
+    with open(docs_json_path, 'w', encoding='utf-8', newline='\n') as json_file:
         json.dump(docs_files, json_file, indent=2, ensure_ascii=False)
     
     print(f"Generated {docs_json_path} with {len(docs_files)} documentation files")
@@ -210,7 +210,7 @@ def main():
     # Write strudel.json
     strudel_config_path = repo_root / 'strudel.json'
     
-    with open(strudel_config_path, 'w', encoding='utf-8') as json_file:
+    with open(strudel_config_path, 'w', encoding='utf-8', newline='\n') as json_file:
         json.dump(sample_config, json_file, indent=2, ensure_ascii=False)
     
     print(f"Generated {strudel_config_path} with {len(sample_config) - 1} sample categories")

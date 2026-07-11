@@ -1,18 +1,25 @@
 {
   "name": "strudel",
   "version": "1.0.0",
-  "main": "test_strudel_file.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "node scripts/patch_kabelsalat.mjs",
+    "eval": "node scripts/eval_strudel.mjs",
+    "test:browser": "node scripts/test_strudel_browser.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@kabelsalat/web": "^0.4.1",
+    "@strudel/core": "^1.2.6",
+    "@strudel/draw": "^1.2.6",
+    "@strudel/mini": "^1.2.6",
+    "@strudel/tonal": "^1.2.6",
+    "@strudel/transpiler": "^1.2.6",
     "puppeteer": "^24.11.1"
   }
 }
