@@ -1,5 +1,14 @@
 [
   {
+    "filename": "slavenmacht-ebm.strudel",
+    "title": "Sklavenmacht EBM",
+    "author": "sarefo",
+    "version": "0.1",
+    "modified": "2026-09-27",
+    "stage": "building",
+    "path": "slavenmacht-ebm.strudel"
+  },
+  {
     "filename": "heres_to_you.strudel",
     "title": "Here's To You",
     "author": "Ennio Morricone - Remix by sarefo",

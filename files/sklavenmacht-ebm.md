@@ -1,0 +1,3 @@
+- consider hihat from "sk" in "sklavenmacht"
+- restrict combinations: "sklaven" - "sklavenmacht" - "sklaven macht sklaven" "sklavenmacht macht sklaven" "sklavenmacht macht sklavenmacht"
+- 

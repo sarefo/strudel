@@ -1,0 +1,145 @@
+/*
+  @title   Sklavenmacht EBM
+  @by      sarefo
+  @version 0.1
+  @license CC BY-NC-SA
+  @url     https://sarefo.github.io/strudel
+  @details dark EBM; the "sklavenmacht" takes are cut into words and
+           recombined into random sentences, different on every play
+  @stage   [ ] published [x] building [ ] test
+*/
+
+samples('github:sarefo/strudel')
+setcpm(128 / 4)
+
+// new random seed on every evaluation, so two plays never match
+const SEED = Math.floor(Math.random() * 100000)
+
+// sklavenmacht samples:
+// 0   "die blindheit ist vorbei"
+// 1-5 takes of "sklavenmacht"
+// cut points found from the amplitude envelopes: "sklaven" ends where
+// the "a" of "macht" rises, "macht" starts inside the n/m nasal
+
+// ---- WORDS ---- //
+
+const take = (i) => s("sklavenmacht").n(i)
+
+// one-word sample slices, one per take
+const SK = {
+  s1: take(1).begin(.01).end(.44), m1: take(1).begin(.39),
+  s2: take(2).begin(.02).end(.50), m2: take(2).begin(.44),
+  s3: take(3).begin(.01).end(.48), m3: take(3).begin(.42),
+  s4: take(4).begin(.02).end(.60), m4: take(4).begin(.55),
+  s5: take(5).begin(.01).end(.38), m5: take(5).begin(.34),
+  f1: take(1).begin(.01), f2: take(2).begin(.02), f3: take(3).begin(.01),
+  f4: take(4).begin(.02), f5: take(5).begin(.01),
+}
+
+// S = "sklaven", M = "macht", F = "sklavenmacht", random take each bar
+const W = {
+  S: "[s1|s2|s3|s4|s5]".inhabit(SK),
+  M: "[m1|m2|m3|m4|m5]".inhabit(SK),
+  F: "[f1|f2|f3|f4|f5]".inhabit(SK),
+}
+
+// one random sentence per bar, on an 8th-note grid
+let sentences = `[
+    S@3 M@2 S@3
+  | F@4 M@1.5 S@2.5
+  | M@2 S@3 M@3
+  | S@3 S@3 M@2
+  | F@4 F@4
+  | M@2 M@2 S@4
+  | S@3 M@2 M@3
+  | F@4 S@4
+  | M M M@2 F@4
+  | S@3 M@5
+  | ~
+]`.inhabit(W)
+
+let vox = sentences
+  .mask("<1 [1|0]>")                       // call, then maybe silence
+  .sometimesBy(.2, x => x.speed(.84))      // darker, slower voice
+  .sometimesBy(.12, x => x.crush(5))
+  .pan(rand.range(.35, .65))
+  .shape(.35)
+  .hpf(160)
+  .room(.35).size(.6)
+  .delay(.3).delaytime(.352).delayfeedback(.4)
+  .gain(1.1)
+
+// "die blindheit ist vorbei": only in the breakdown, and not always
+let blindheit = s("sklavenmacht:0")
+  .struct("<x?0.6 ~!15 x?0.25 ~!15>")
+  .room(1.2).size(.9)
+  .delay(.25).delaytime(.352).delayfeedback(.5)
+  .shape(.2)
+  .gain(1.3)
+
+// ---- DRUMS ---- //
+
+let kick = s("bd*4, [~ ~ ~ bd?0.85]*<0 0 0 1>")
+  .bank("RolandTR909")
+  .distort("1.5:.6")
+  .lpf(2500)
+  .gain(.95)
+
+let clap = s("~ cp ~ cp, ~ ~ ~ [~ sd?0.7]")
+  .bank("RolandTR909")
+  .room(.3)
+  .gain(".65 .65 .65 .35")
+
+let hats = s("hh*16, ~ oh ~ oh")
+  .bank("RolandTR909")
+  .degradeBy(.2)
+  .gain(perlin.range(.15, .4))
+  .hpf(6000)
+  .pan(sine.slow(4).range(.3, .7))
+
+// ---- SYNTHS ---- //
+
+// root movement per bar, D minor
+const roots = "<0 0 2 -2>"
+
+let bass = n("[0 0 7 0]*4"
+    .sometimesBy(.12, x => x.add(3))       // random jumps up a fourth
+    .add(roots))
+  .scale("D1:minor")
+  .s("sawtooth")
+  .lpf(sine.slow(16).range(250, 1400)).lpq(9)
+  .lpenv(3).lpd(.1)
+  .decay(.13).sustain(0)
+  .shape(.3)
+  .gain("[1 .7 .85 .7]*4")
+
+let drone = n("<[0,4] [0,4] [2,6] [-2,2]>")
+  .scale("D2:minor")
+  .s("supersaw")
+  .lpf(sine.slow(32).range(300, 900))
+  .attack(.4).release(1.5)
+  .room(.8).size(.9)
+  .gain(.28)
+
+// dissonant stabs (minor + flat fifth)
+let stabs = note("~ ~ ~ [d3,f3,ab3] ~ ~ [d3,f3,ab3] ~")
+  .add(note("<0 0 3 -4>"))                 // same root movement, semitones
+  .s("square")
+  .degradeBy(.35)
+  .lpf(1800)
+  .decay(.15).sustain(0)
+  .delay(.4).delaytime(.352).delayfeedback(.45)
+  .room(.5)
+  .gain(.35)
+
+// ---- FORM (32 bars, looping) ---- //
+// 0-3 intro | 4-15 drive | 16-19 breakdown | 20-31 full
+
+$: drone.seed(SEED)
+$: kick.mask("<0@4 1@12 0@4 1@12>").seed(SEED)
+$: clap.mask("<0@8 1@8 0@4 1@12>").seed(SEED)
+$: hats.mask("<1@16 0@2 1@14>").seed(SEED)
+$: bass.mask("<0@4 1@12 0@2 1@14>").seed(SEED)
+$: stabs.mask("<0@12 1@4 0@4 1@12>").seed(SEED)
+$: vox.mask("<0 1@15 0@2 1@14>").seed(SEED)
+$: blindheit.seed(SEED)
