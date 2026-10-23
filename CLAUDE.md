@@ -116,10 +116,10 @@ this script currently only works elsewhere. Use the Claude-in-Chrome route here.
 
 ## Strudel Code Logic
 
-When working with Strudel code logic, patterns, or syntax, ALWAYS use the Context7 MCP server to access up-to-date Strudel documentation. Use the following approach:
+When working with Strudel code logic, patterns, or syntax, use the Context7 MCP server to access up-to-date Strudel documentation. Use the following approach:
 
-1. First resolve the library ID: `mcp__context7__resolve-library-id` with `libraryName: "strudel"`
-2. Then get documentation: `mcp__context7__get-library-docs` with `context7CompatibleLibraryID: "/tidalcycles/strudel"`
+1. First resolve the library ID: Context7 `resolve-library-id` with `libraryName: "strudel"`
+2. Then query the docs: Context7 `query-docs` with library ID `"/tidalcycles/strudel"`
 
 This ensures accurate understanding of:
 - Pattern syntax and functions (e.g., `note()`, `s()`, `cat()`, `seq()`)
